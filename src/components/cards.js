@@ -1,204 +1,390 @@
 import React, { useState, useEffect } from "react";
-import 'antd/dist/antd.css';
-import { Tabs} from 'antd';
-import { Form, Input, Button } from 'antd';
+import "antd/dist/antd.css";
+import { Tabs } from "antd";
+import { Form, Input, Button } from "antd";
 import { v4 as uuidv4 } from "uuid";
-import { Card } from 'antd';
-import swal from 'sweetalert';
-import './cards.css'
-import { EditOutlined, DeleteOutlined, CloseCircleOutlined, BgColorsOutlined } from '@ant-design/icons';
+import { Card } from "antd";
+import swal from "sweetalert";
+import "./cards.css";
+import {
+  EditOutlined,
+  DeleteOutlined,
+  CloseCircleOutlined,
+  PlusCircleOutlined,
+} from "@ant-design/icons";
 const { Meta } = Card;
 const { TabPane } = Tabs;
 
-
-
 const Cards = () => {
+  const [list, setList] = useState([]);
+  const [itemsList, setItemsList] = useState([]);
+  const [descriptionItem, setDescriptionItem] = useState("");
+  const [form] = Form.useForm();
 
-    const [list, setList] = useState([]);
-    const [itemsList, setItemsList] = useState([]);
-    const [descriptionItem, setDescriptionItem] = useState("")
-    const [form] = Form.useForm();
+  const createList = (values) => {
+    console.log(values);
+    let { title, description } = values;
+    let newList = {
+      title,
+      description,
+      idList: uuidv4(),
+      color: "darkMode",
+    };
+    console.log(newList);
+    setList([...list, newList]);
+    form.resetFields();
+    swal({
+        icon: "success",
+        text: "Created!",
+        buttons: false,
+        timer: 1000,
+      });
+  };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    console.log(value);
+    setDescriptionItem(value);
+  };
 
-    const createList = (values) => {
-        console.log(values);
-        let {title,description} = values;
-        let newList = {
-            title,
-            description,
-            idList:uuidv4(),
-            color:"white"
-        }
-        console.log(newList)
-        setList([...list, newList]);
-        form.resetFields();
+  const addItem = (id) => {
+    swal({
+      text: "Add new coment",
+      content: "input",
+      className: "blackMode",
+      button: {
+        text: "Add",
+        closeModal: false,
+      },
+    }).then((data) => {
+      let newItem = {
+        idfromList: id,
+        idItem: uuidv4(),
+        description: data,
+        color: "white",
+        edit: false,
       };
+      setItemsList([...itemsList, newItem]);
+      swal({
+        icon: "success",
+        text: "Success",
+        buttons: false,
+        timer: 1000,
+      });
+    });
+  };
 
-    const handleChange =(e)=>{
-        const {name,value} = e.target
-        console.log(value)
-        setDescriptionItem(value)
-    }
-
-    const addItem = (id) => {
-        swal({
-            text: 'Add new coment',
-            content: "input",
-            className: "blackMode",
-            button: {
-              text: "Add",
-              closeModal: false,
-            },
-          }).then(data =>{
-            let newItem = {
-                idfromList:id,
-                idItem: uuidv4(),
-                description: data,
-                color:"white"
-            }
-            setItemsList([...itemsList, newItem])
-            swal({
-                icon: "success",
-                text:"Success",
-                buttons: false,
-                timer: 1000,
-              })
-          })
-
-    }
-
-    const deleteItem = (id) => {  
+  const deleteItem = (id) => {
     let results = itemsList.filter((element) => {
       return element.idItem !== id;
     });
-    setItemsList(results)
-    }
+    setItemsList(results);
+  };
 
-    const changeColor = (element,color) => {
+  const deleteList = (id) => {
+    let results = list.filter((element) => {
+      return element.idList !== id;
+    });
+    let resultsItems = itemsList.filter((element) => {
+      return element.idfromList !== id;
+    });
+    setList(results);
+    setItemsList(resultsItems);
+    swal({
+        icon: "success",
+        text: "Deleted!",
+        buttons: false,
+        timer: 1500,
+      });
+  };
 
-        let myData = element
+  const enableItem = (element) => {
+    let myData = element;
 
-        myData.color = color
+    myData.edit = true;
 
-        const tagsUpdated = list.map((value) => {
-            if (value.idList === element.idList) {
-            return myData;
-            }
-            return value;
-        });
+    setDescriptionItem(myData.description);
 
+    const tagsUpdated = list.map((value) => {
+      if (value.idList === element.idList) {
+        return myData;
+      }
+      return value;
+    });
 
+    setList(tagsUpdated);
+  };
 
-        setList(tagsUpdated)
+  const disableItem = (element) => {
+    let myData = element;
 
+    myData.edit = false;
 
-    }
+    setDescriptionItem(myData.description);
 
-    console.log(itemsList)
-    return(
-        <div style={{padding:'3%'}}>
-            <Tabs  tabPosition="top">
-                <TabPane  tab="Create a List" key="1">
+    const tagsUpdated = list.map((value) => {
+      if (value.idList === element.idList) {
+        return myData;
+      }
+      return value;
+    });
 
-                <Form form={form} layout="vertical" onFinish={createList} >
-                    <Form.Item
-                    initialValues={{
-                        remember: true,
-                      }}
-                        name='title'
-                        label="Title"
-                        rules={[{
-                        required: true,
-                        },]}
-                    >
-                         <Input />
-                    </Form.Item>
-                    <Form.Item name='description' label="Description">
-                        <Input.TextArea />
-                    </Form.Item>
-                    <Form.Item wrapperCol={{offset: 8 }}>
-                        <Button htmlType="submit">
-                        Submit
-                        </Button>
-                    </Form.Item>
-                </Form>
-                </TabPane>
-                <TabPane tab="My List" key="2">
-                <div style={{overflowY:"scroll", height:"70vh"}} >
-                <div className="gridContent">
-                    {
-                        list.map((element)=>{
-                            return(
-                                <div className={element.color} >
-                                    <div style={{textAlign:"right"}}> 
-                                        <Button onClick={()=>{changeColor(element,"purpleMode" )}} className="purple" size="small" shape="circle"> </Button>
-                                        <Button onClick={()=>{changeColor(element,"darkMode" )}} className="dark" size="small" shape="circle"> </Button>
-                                        <Button className="purple" size="small" shape="circle"> </Button>
-                                        <Button className="purple" size="small" shape="circle"> </Button>
-                                        <Button className="purple" size="small" shape="circle"> </Button>
-                                        <Button className="purple" size="small" shape="circle"> </Button>                               
-                                    </div>
-                                    <h3 className="darkModeLetters">{element.title} </h3>
-                                    <p className="darkModeLetters" >{element.description}</p>
-                                    
-                                    <div style={{overflowY:"scroll", height:200}}  >
-                                    {
-                                        itemsList.filter((i)=> {return i.idfromList === element.idList}).map((data)=>{
-                                            
-                                            return(
-                                            <div style={{margin:" 0 2% 10% 2%", background:"gray", padding:"2%"}}  key ={data.idItem} >
-                                                <div style={{textAlign:"right", margin:5}}>
-                                                <CloseCircleOutlined onClick={()=>{deleteItem(data.idItem)}} />
-                                                <EditOutlined/>
-                                                </div>
-                                                
-                                                <li>{data.description}</li>
-                                            </div>
-                                            
-                                            )
-                                        })
-                                    }
+    setList(tagsUpdated);
+  };
 
-                                    </div>
-                                    
-                                    <Button
-                                        type="primary"
-                                        size="small"
-                                        onClick={() => addItem(element.idList)}
-                                        >
-                                        Add Coment
-                                    </Button>
-                                    <Button
-                                        type="primary"
-                                        size="small"
-                                        onClick={() => addItem(element.idList)}
-                                        >
-                                        Add Coment
-                                    </Button>
-                                    <Button
-                                        type="primary"
-                                        size="small"
-                                        onClick={() => addItem(element.idList)}
-                                        >
-                                        Add Coment
-                                    </Button>
+  const editItem = (element) => {
+    let myData = element;
 
-                          
-                                    
-                                </div>
-                            )
+    myData.description = descriptionItem;
+    myData.edit = false;
+
+    const tagsUpdated = list.map((value) => {
+      if (value.idList === element.idList) {
+        return myData;
+      }
+      return value;
+    });
+
+    setList(tagsUpdated);
+  };
+
+  const changeColor = (element, color) => {
+    let myData = element;
+
+    myData.color = color;
+
+    const tagsUpdated = list.map((value) => {
+      if (value.idList === element.idList) {
+        return myData;
+      }
+      return value;
+    });
+
+    setList(tagsUpdated);
+  };
+
+  console.log(itemsList);
+  return (
+    <div style={{ padding: "3%" }}>
+      <Tabs tabPosition="top">
+        <TabPane tab="Create a List" key="1">
+          <div className="myForm">
+            <Form form={form} layout="vertical" onFinish={createList}>
+              <Form.Item
+                initialValues={{
+                  remember: true,
+                }}
+                name="title"
+                label="Title"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+              <Form.Item
+                style={{  fontWeight: 700 }}
+                name="description"
+                label="Description"
+              >
+                <Input.TextArea />
+              </Form.Item>
+              <Form.Item wrapperCol={{ offset: 8 }}>
+                <Button type="primary" size="large" htmlType="submit">
+                  Create a new list
+                </Button>
+              </Form.Item>
+            </Form>
+          </div>
+        </TabPane>
+        <TabPane tab="My List" key="2">
+          <div style={{ overflowY: "scroll", height: "70vh" }}>
+            <div className="gridContent">
+              {list.map((element) => {
+                let colorDiv;
+                let colorButtons;
+
+                switch (element.color) {
+                  case "pinkMode":
+                    colorDiv = "pinkItems";
+                    colorButtons = "pinkButtons";
+                    break;
+                  case "purpleMode":
+                    colorDiv = "purpleItems";
+                    colorButtons = "purpleButtons";
+                    break;
+                  case "darkMode":
+                    colorDiv = "darkItems";
+                    colorButtons = "darkButtons";
+                    break;
+                  case "blueTrypanMode":
+                    colorDiv = "blueTrypanItems";
+                    colorButtons = "blueTrypanButtons";
+                    break;
+                  case "blueUltramarineMode":
+                    colorDiv = "blueUltramarineItems";
+                    colorButtons = "blueUltramarineButtons";
+                    break;
+                  case "blueSkyMode":
+                    colorDiv = "blueSkyItems";
+                    colorButtons = "blueSkyButtons";
+                    break;
+                  default:
+                    break;
+                }
+
+                return (
+                  <div className={element.color}>
+                    <div style={{ textAlign: "right" }}>
+                      <Button
+                        onClick={() => {
+                          changeColor(element, "pinkMode");
+                        }}
+                        className="pink"
+                        size="small"
+                        shape="circle"
+                      >
+                        {" "}
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          changeColor(element, "purpleMode");
+                        }}
+                        className="purple"
+                        size="small"
+                        shape="circle"
+                      >
+                        {" "}
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          changeColor(element, "darkMode");
+                        }}
+                        className="dark"
+                        size="small"
+                        shape="circle"
+                      >
+                        {" "}
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          changeColor(element, "blueTrypanMode");
+                        }}
+                        className="blueTrypan"
+                        size="small"
+                        shape="circle"
+                      >
+                        {" "}
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          changeColor(element, "blueUltramarineMode");
+                        }}
+                        className="blueUltramarine"
+                        size="small"
+                        shape="circle"
+                      >
+                        {" "}
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          changeColor(element, "blueSkyMode");
+                        }}
+                        className="blueSky"
+                        size="small"
+                        shape="circle"
+                      >
+                        {" "}
+                      </Button>
+                      <CloseCircleOutlined
+                        className="deleteCircleList"
+                        onClick={() => {
+                          deleteList(element.idList);
+                        }}
+                      />
+                    </div>
+                    <h3 className="darkModeLetters">{element.title} </h3>
+                    <p className="darkModeLetters">
+                      {element.description === undefined
+                        ? "No description added"
+                        : element.description}
+                    </p>
+
+                    <div className="scrollDiv">
+                      {itemsList
+                        .filter((i) => {
+                          return i.idfromList === element.idList;
                         })
-                    }
+                        .map((data) => {
+                          return (
+                            <div className={colorDiv} key={data.idItem}>
+                              <div style={{ textAlign: "right" }}>
+                                {!data.edit && (
+                                  <div>
+                                    <EditOutlined
+                                      onClick={() => {
+                                        enableItem(data);
+                                      }}
+                                    />
+                                    <CloseCircleOutlined
+                                      onClick={() => {
+                                        deleteItem(data.idItem);
+                                      }}
+                                    />
+                                  </div>
+                                )}
+                                {data.edit && (
+                                  <div>
+                                    <PlusCircleOutlined
+                                      onClick={() => {
+                                        editItem(data);
+                                      }}
+                                    />
+                                    <CloseCircleOutlined
+                                      onClick={() => {
+                                        disableItem(data);
+                                      }}
+                                    />
+                                  </div>
+                                )}
+                              </div>
+                              <div style={{ padding: "2%" }}>
+                                {!data.edit && <b>{data.description}</b>}
+                                {data.edit && (
+                                  <textarea
+                                    style={{ width: "100%", color: "black" }}
+                                    onChange={(e) => {
+                                      handleChange(e);
+                                    }}
+                                    value={descriptionItem}
+                                  />
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
                     </div>
 
+                    <div className="containerButtons">
+                      <Button
+                        size="medium"
+                        className={colorButtons}
+                        onClick={() => addItem(element.idList)}
+                      >
+                        Add Coment
+                      </Button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </TabPane>
+      </Tabs>
+    </div>
+  );
+};
 
-                </div>
-                
-                </TabPane>
-            </Tabs>
-        </div>
-       
-    )
-}
-
-export default Cards
+export default Cards;

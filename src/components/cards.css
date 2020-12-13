@@ -1,3 +1,14 @@
+.myForm{
+    width: 70%;
+    padding: 5% 15% 5% 15%;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: #188fff83;
+    border-radius: 1rem;
+    color: white !important;
+}
+
+
 .gridContent{
     display: grid;
     align-items: center;
@@ -7,10 +18,19 @@
 
 .darkMode{
     color:white !important;
-    background-color: black !important;
+    background-color:#001529;
     padding: 5%;
     margin: 5%;
-    height: 380px;
+    height: 400px;
+    border-bottom-right-radius: 1rem;
+}
+
+.darkItems{
+    color: white;
+    margin: 0 2% 10% 2%;
+    padding:2%;
+    border-radius: 1rem;
+    background-color:#2e3235;
 
 }
 
@@ -18,38 +38,240 @@
     color: white;
 }
 
-.whiteMode{
-    color: black !important;
-    background-color: white !important;
-    padding: 10%;
+
+.pinkMode{
+    padding: 5%;
     margin: 5%;
-    height: 380px;
+    height: 400px;
+    color: white !important;
+    background-color: #F72585;
+    border-bottom-right-radius: 1rem;
+}
 
-
+.pinkItems{
+    background-color: #ff55a1;
+    color: white;
+    margin: 0 2% 10% 2%;
+    padding:2%;
+    border-radius: 1rem;
 }
 
 .purpleMode{
     padding: 5%;
     margin: 5%;
-    height: 380px;
-    color: black !important;
-    background-color: blueviolet;
+    height: 400px;
+    color:white;
+    background-color:#8980f5;
+    border-bottom-right-radius: 1rem;
 }
 
+.purpleItems{
+    background-color: #6558f8 ;
+    color: white;
+    margin: 0 2% 10% 2%;
+    padding:2%;
+    border-radius: 1rem;
+}
+
+.blueTrypanMode{
+    color:white !important;
+    background-color: #1e0b8b;
+    padding: 5%;
+    margin: 5%;
+    height: 400px;
+    border-bottom-right-radius: 1rem;
+}
+
+.blueTrypanItems{
+    background-color: #2d48c0 ;
+    color: white;
+    margin: 0 2% 10% 2%;
+    padding:2%;
+    border-radius: 1rem;
+
+}
+
+.blueUltramarineMode{
+    color:white !important;
+    padding: 5%;
+    margin: 5%;
+    height: 400px;
+    border-bottom-right-radius: 1rem;
+    background-color: #4361ee;
+}
+
+.blueUltramarineItems{
+    background-color: #617eff;
+    color: white;
+    margin: 0 2% 10% 2%;
+    padding:2%;
+    border-radius: 1rem;
+
+}
+
+.blueSkyMode{
+    background-color: #4cc9f0;
+    padding: 5%;
+    margin: 5%;
+    height: 400px;
+    border-bottom-right-radius: 1rem;
+    color: white;
+}
+
+.blueSkyItems{
+    background-color: #1cb3e0;
+    color: white;
+    margin: 0 2% 10% 2%;
+    padding:2%;
+    border-radius: 1rem;
+
+}
+
+.pink{
+    background-color: #F72585;
+}
+
+.pink:hover{
+    background-color: #F72585;
+}
+
+.pink:focus{
+    background-color: #F72585;
+    border-color: white;
+
+}
+
+.pinkButtons{
+    background-color: #ff55a1;
+    color: white;
+
+}
+.pinkButtons:hover{
+    background-color: #ff55a1;
+    color: white;
+    
+}
+.pinkButtons:active{
+    background-color: #ff55a1;
+    color: white;
+    
+}
+
+
 .purple{
-    background-color: blueviolet;
+    background-color: #8980f5;
     
     
 }
 
 .purple:hover{
-    background-color: blueviolet !important;
+    background-color: #8980f5 !important;
 }
 
 .purple:focus{
-    background-color: blueviolet !important;
+    background-color:#8980f5 !important;
     border-color: white;
 }
+
+.purpleButtons{
+    background-color: #6558f8 ;
+    color: white;
+    
+    
+}
+
+.purpleButtons:hover{
+    background-color: #6558f8  !important;
+    color: white;
+}
+
+.purpleButtons:focus{
+    background-color: #6558f8  !important;
+    border-color: white;
+    color: white;
+}
+
+.blueTrypan{
+    background-color: #1e0b8b;
+}
+.blueTrypan:hover{
+    background-color: #1e0b8b;
+}
+.blueTrypan:focus{
+    background-color: #1e0b8b;
+    border-color: white;
+}
+
+.blueTrypanButtons{
+    background-color: #2d48c0 ;
+    color: white;
+    
+    
+}
+
+.blueTrypanButtons:hover{
+    background-color: #2d48c0 ;
+    color: white;
+}
+
+.blueTrypanButtons:focus{
+    background-color: #2d48c0 ;
+    color: white;
+}
+
+.blueUltramarine{
+    background-color: #4361ee;
+}
+.blueUltramarine:hover{
+    background-color: #4361ee;
+}
+.blueUltramarine:focus{
+    background-color: #4361ee;
+    border-color: white;
+}
+
+.blueUltramarineButtons{
+    background-color: #617eff;
+    color: white;
+}
+.blueUltramarineButtons:hover{
+    background-color: #617eff;
+    color: white;
+    
+}
+.blueUltramarineButtons:focus{
+    background-color: #617eff;
+    color: white;
+}
+
+
+
+.blueSky{
+    background-color: #4cc9f0;
+}
+.blueSky:hover{
+    background-color: #4cc9f0;
+}
+.blueSky:focus{
+    background-color: #4cc9f0;
+    border-color: white;
+}
+
+.blueSkyButtons{
+    background-color: #1cb3e0;
+    color: white;
+}
+.blueSkyButtons:hover{
+    background-color: #1cb3e0;
+    color: white;
+}
+.blueSkyButtons:focus{
+    background-color: #1cb3e0;
+    color:white;
+    border-color: white;
+}
+
+
 
 .dark{
     background-color: rgb(0, 0, 0);
@@ -66,3 +288,88 @@
 
 }
 
+.darkButtons{
+    background-color:#2e3235;
+    color: white;
+    
+}
+
+.darkButtons:hover{
+    background-color:#2e3235;
+    color: white;
+}
+
+.darkButtons:focus{
+    background-color:#2e3235;
+    color: white;
+
+}
+
+.deleteCircleList{
+    font-size: x-large;
+    margin-left: 5%;
+}
+
+
+.containerButtons{
+    text-align: center;
+    padding-top: 3%;
+}
+
+@media only screen and (max-width: 800px) {
+    .myForm{
+        width: 90%;
+        padding:5% 10% 5% 10%;
+        margin-left: 5%;
+        margin-right: 5%;
+        background-color: #188fff83;
+        border-radius: 1rem;
+    }
+
+    .containerButtons{
+        padding-top: 7%;
+        
+    }
+  }
+
+  .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #1890ff;
+    font-weight: 900;
+}
+
+
+
+.ant-form-item-label{
+    font-weight: 700;
+
+}
+
+.scrollDiv {
+    overflow-y: scroll;
+    height: 200px;
+  }
+  
+  .scrollDiv::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 2rem;
+    background: #b3b3b3;
+    /* Tamaño del scroll en horizontal */
+  }
+  
+  .scrollDiv::-webkit-scrollbar-thumb {
+    border-radius: 2rem;
+    background: #ffffff;
+  }
+  
+  .scrollDiv::-webkit-scrollbar-thumb:hover {
+    background: #ffffff;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Cambiamos el fondo cuando esté en active */
+  
+  .scrollDiv:-webkit-scrollbar-track {
+    background: #535353;
+    border-radius: 4px;
+  }
+  
