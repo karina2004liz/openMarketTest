@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/openMarketTest/static/css/main.acf41e00.chunk.css",
-    "main.js": "/openMarketTest/static/js/main.9acc968d.chunk.js",
-    "main.js.map": "/openMarketTest/static/js/main.9acc968d.chunk.js.map",
+    "main.js": "/openMarketTest/static/js/main.7806120c.chunk.js",
+    "main.js.map": "/openMarketTest/static/js/main.7806120c.chunk.js.map",
     "runtime-main.js": "/openMarketTest/static/js/runtime-main.0a2312ee.js",
     "runtime-main.js.map": "/openMarketTest/static/js/runtime-main.0a2312ee.js.map",
     "static/css/2.b00201c5.chunk.css": "/openMarketTest/static/css/2.b00201c5.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.b00201c5.chunk.css",
     "static/js/2.12f5aa45.chunk.js",
     "static/css/main.acf41e00.chunk.css",
-    "static/js/main.9acc968d.chunk.js"
+    "static/js/main.7806120c.chunk.js"
   ]
 }
