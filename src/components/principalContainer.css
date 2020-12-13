@@ -1,0 +1,23 @@
+.site-layout-content {
+    margin: 0 auto;
+    height: 83vh;
+    
+  }
+
+  .ant-row-rtl .logo {
+    float: right;
+    margin: 16px 0 16px 24px;
+  }
+    [data-theme="dark"] .site-layout-content {
+      background: #141414;
+    }
+
+.darkMode{
+    color:white;
+    background-color: black;
+}
+
+.whiteMode{
+    color: black;
+    background-color: white;
+}

@@ -1,0 +1,68 @@
+.gridContent{
+    display: grid;
+    align-items: center;
+    grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+   
+}
+
+.darkMode{
+    color:white !important;
+    background-color: black !important;
+    padding: 5%;
+    margin: 5%;
+    height: 380px;
+
+}
+
+.darkModeLetters{
+    color: white;
+}
+
+.whiteMode{
+    color: black !important;
+    background-color: white !important;
+    padding: 10%;
+    margin: 5%;
+    height: 380px;
+
+
+}
+
+.purpleMode{
+    padding: 5%;
+    margin: 5%;
+    height: 380px;
+    color: black !important;
+    background-color: blueviolet;
+}
+
+.purple{
+    background-color: blueviolet;
+    
+    
+}
+
+.purple:hover{
+    background-color: blueviolet !important;
+}
+
+.purple:focus{
+    background-color: blueviolet !important;
+    border-color: white;
+}
+
+.dark{
+    background-color: rgb(0, 0, 0);
+    
+}
+
+.dark:hover{
+    background-color: rgb(0, 0, 0) !important;
+}
+
+.dark:focus{
+    background-color: rgb(0, 0, 0) !important;
+    border-color: white;
+
+}
+
