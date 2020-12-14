@@ -1,18 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "antd/dist/antd.css";
 import { Tabs } from "antd";
 import { Form, Input, Button } from "antd";
 import { v4 as uuidv4 } from "uuid";
-import { Card } from "antd";
 import swal from "sweetalert";
 import "./cards.css";
 import {
   EditOutlined,
-  DeleteOutlined,
   CloseCircleOutlined,
   PlusCircleOutlined,
 } from "@ant-design/icons";
-const { Meta } = Card;
 const { TabPane } = Tabs;
 
 const Cards = () => {
@@ -22,7 +19,7 @@ const Cards = () => {
   const [form] = Form.useForm();
 
   const createList = (values) => {
-    console.log(values);
+    
     let { title, description } = values;
     let newList = {
       title,
@@ -30,7 +27,7 @@ const Cards = () => {
       idList: uuidv4(),
       color: "darkMode",
     };
-    console.log(newList);
+   
     setList([...list, newList]);
     form.resetFields();
     swal({
@@ -42,8 +39,7 @@ const Cards = () => {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    console.log(value);
+    const { value } = e.target;
     setDescriptionItem(value);
   };
 
@@ -163,7 +159,7 @@ const Cards = () => {
     setList(tagsUpdated);
   };
 
-  console.log(itemsList);
+ 
   return (
     <div style={{ padding: "3%" }}>
       <Tabs tabPosition="top">
@@ -378,7 +374,7 @@ const Cards = () => {
                     </div>
                   </div>
                 );
-              })}
+              }).reverse()}
             </div>
           </div>
         </TabPane>
